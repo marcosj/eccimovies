@@ -1,0 +1,32 @@
+2015-10-28 05:32:21 Error: [MissingComponentException] Component class ToolbarComponent could not be found.
+Exception Attributes: array (
+  'class' => 'ToolbarComponent',
+  'plugin' => 'DebugKit',
+)
+Request URL: /~mj/cakephp/
+Stack Trace:
+#0 /home/mj/public_html/cakephp/lib/Cake/Controller/ComponentCollection.php(53): ComponentCollection->load('DebugKit.Toolba...', Array)
+#1 /home/mj/public_html/cakephp/lib/Cake/Controller/Controller.php(643): ComponentCollection->init(Object(PagesController))
+#2 /home/mj/public_html/cakephp/lib/Cake/Routing/Dispatcher.php(188): Controller->constructClasses()
+#3 /home/mj/public_html/cakephp/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(PagesController), Object(CakeRequest))
+#4 /home/mj/public_html/cakephp/app/webroot/index.php(115): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-10-28 06:06:03 Error: Fixture creation for "products" failed "SQLSTATE[42000]: Syntax error or access violation: 1101 BLOB/TEXT column 'enable' can't have a default value"
+2015-10-28 06:06:03 Error: [PDOException] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'test.products' doesn't exist
+Stack Trace:
+#0 /home/mj/public_html/cakephp/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /home/mj/public_html/cakephp/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('TRUNCATE TABLE ...', Array)
+#2 /home/mj/public_html/cakephp/lib/Cake/Model/Datasource/DboSource.php(2275): DboSource->execute('TRUNCATE TABLE ...')
+#3 /home/mj/public_html/cakephp/lib/Cake/TestSuite/Fixture/CakeTestFixture.php(331): DboSource->truncate('products')
+#4 /home/mj/public_html/cakephp/lib/Cake/TestSuite/Fixture/CakeFixtureManager.php(232): CakeTestFixture->truncate(Object(Mysql))
+#5 /home/mj/public_html/cakephp/lib/Cake/TestSuite/CakeTestCase.php(80): CakeFixtureManager->load(Object(ActorsControllerTest))
+#6 phar:///home/mj/public_html/cakephp/app/Vendor/phpunit.phar/phpunit/Framework/TestSuite.php(779): CakeTestCase->run(Object(PHPUnit_Framework_TestResult))
+#7 phar:///home/mj/public_html/cakephp/app/Vendor/phpunit.phar/phpunit/Framework/TestSuite.php(749): PHPUnit_Framework_TestSuite->runTest(Object(ActorsControllerTest), Object(PHPUnit_Framework_TestResult))
+#8 phar:///home/mj/public_html/cakephp/app/Vendor/phpunit.phar/phpunit/TextUI/TestRunner.php(350): PHPUnit_Framework_TestSuite->run(Object(PHPUnit_Framework_TestResult), false, Array, Array, false)
+#9 /home/mj/public_html/cakephp/lib/Cake/TestSuite/CakeTestRunner.php(62): PHPUnit_TextUI_TestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#10 /home/mj/public_html/cakephp/lib/Cake/TestSuite/CakeTestSuiteCommand.php(98): CakeTestRunner->doRun(Object(PHPUnit_Framework_TestSuite), Array)
+#11 /home/mj/public_html/cakephp/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(259): CakeTestSuiteCommand->run(Array)
+#12 /home/mj/public_html/cakephp/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(96): CakeTestSuiteDispatcher->_runTestCase()
+#13 /home/mj/public_html/cakephp/lib/Cake/TestSuite/CakeTestSuiteDispatcher.php(113): CakeTestSuiteDispatcher->dispatch()
+#14 /home/mj/public_html/cakephp/app/webroot/test.php(105): CakeTestSuiteDispatcher::run()
+#15 {main}
