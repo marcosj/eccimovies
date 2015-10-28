@@ -13,7 +13,7 @@ class Subcategory extends AppModel {
  *
  * @var string
  */
-	public $displayField = 'category_id';
+	public $displayField = 'subcategory_name';
 
 
 	// The Associations below have been created with all possible keys, those that are not needed can be removed

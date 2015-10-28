@@ -46,11 +46,17 @@ CREATE TABLE payment_methods
 
 CREATE TABLE invoices
 (
-	id					INT	UNSIGNED AUTO_INCREMENT,
+	id		INT	UNSIGNED AUTO_INCREMENT,
+    shippping_price DECIMAL (8,2),
+    tax     DECIMAL (8,2),
+    total   DECIMAL (8,2),
 	payment_method_id	INT	UNSIGNED NOT NULL,
+    address_id INT UNSIGNED NOT NULL,
 
 	PRIMARY KEY ( id ),
-	FOREIGN KEY ( payment_method_id ) REFERENCES payment_methods ( id )
+	FOREIGN KEY ( payment_method_id ) REFERENCES payment_methods ( id ),
+    FOREIGN KEY ( address_id ) REFERENCES addresses ( id ),  
+    CHECK ( total >= 0 )
 );
 
 CREATE TABLE categories
@@ -85,7 +91,7 @@ CREATE TABLE products
 	price			DECIMAL( 5, 2 )	NOT NULL,
 	stock_quantity	INT DEFAULT 0,
 	format			VARCHAR( 32 ),
-	languages		VARCHAR( 32 ),
+	languages		VARCHAR( 64 ),
 	subtitles		VARCHAR( 64 ),
 	release_year	YEAR( 4 ),
 	runtime			SMALLINT UNSIGNED,
@@ -125,14 +131,12 @@ CREATE TABLE carts
 (
 	id			INT	UNSIGNED AUTO_INCREMENT,
 	user_id		INT UNSIGNED,
-	subtotal	DECIMAL( 8, 3 ),
-	total		DECIMAL( 8, 3 ),
+	subtotal	DECIMAL( 8, 2 ),
 
 	PRIMARY KEY ( id ),
 	FOREIGN KEY	( user_id ) REFERENCES users ( id )
 		ON UPDATE CASCADE,
-	CHECK ( subtotal >= 0 ),
-	CHECK ( total >= 0 )
+	CHECK ( subtotal >= 0 )
 );
 
 CREATE TABLE wishlists
@@ -178,7 +182,7 @@ CREATE TABLE invoices_products
 	invoice_id	INT	UNSIGNED NOT NULL,
 	product_id	INT	UNSIGNED NOT NULL,
 	quantity	INT,
-	price		DECIMAL( 8, 3 ),
+	price		DECIMAL( 8, 2 ),
 
 	PRIMARY KEY ( id ),
 	FOREIGN KEY ( invoice_id ) REFERENCES invoices ( id ),
@@ -201,7 +205,7 @@ CREATE TABLE valid_accounts
 	PRIMARY KEY ( id )
 );
 
---Trigger para poder borrar una categoría y que se reubiquen las subcategorías en un tipo de categoría "Sin Categoría"
+-- Trigger para poder borrar una categoría y que se reubiquen las subcategorías en un tipo de categoría "Sin Categoría"
 CREATE TRIGGER on_delete_set_default
 BEFORE DELETE ON categories
 FOR EACH ROW
